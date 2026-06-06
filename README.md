@@ -1074,6 +1074,7 @@ import { countersActions, countersSelectors } from '../features/counters';
 import { FCCounter } from '../components';
 
 type OwnProps = {
+  label: string;
   initialCount?: number;
 };
 
