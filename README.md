@@ -1081,14 +1081,19 @@ type ToggleState = {
   isOpen: boolean;
 };
 
-type ToggleUpdaters = {
+type ToggleHandlers = {
+  toggle: () => void;
+  close: () => void;
+};
+
+type ToggleStateUpdaters = {
   toggle: () => ToggleState;
   close: () => ToggleState;
 };
 
-type ToggleProps = ToggleOuterProps & ToggleState & ToggleUpdaters;
+type ToggleProps = ToggleOuterProps & ToggleState & ToggleHandlers;
 
-const ToggleView: React.FC<ToggleProps> = ({ close, isOpen, label, toggle }) => (
+const ToggleView = ({ close, isOpen, label, toggle }: ToggleProps) => (
   <section>
     <button type="button" onClick={toggle}>
       {label}
@@ -1103,7 +1108,7 @@ const ToggleView: React.FC<ToggleProps> = ({ close, isOpen, label, toggle }) => 
 
 const withToggleState = withStateHandlers<
   ToggleState,
-  ToggleUpdaters,
+  ToggleStateUpdaters,
   ToggleOuterProps
 >(
   ({ initiallyOpen = false }) => ({
